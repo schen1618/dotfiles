@@ -1,8 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/schen/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$XDG_CONFIG_HOME/oh-my-zsh/custom"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -111,7 +114,7 @@ function mkvenv() {
 	direnv allow
 }
 
-export DEFAULT_USER=schen
+export DEFAULT_USER=$USER
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
