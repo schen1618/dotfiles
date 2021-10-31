@@ -1,1 +1,1 @@
-alias brew="arch -x86_64 brew"
+eval "$(/opt/homebrew/bin/brew shellenv)"

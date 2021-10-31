@@ -70,7 +70,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git direnv command-not-found common-aliases fzf z sudo zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git direnv command-not-found common-aliases fzf zoxide poetry sudo zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,8 +99,34 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rosetta="arch -x86_64 zsh"
-alias brew="arch -x86_64 brew"
+alias ibrew="arch -x86_64 brew"
+alias abrew="arch -arm64 brew"
 alias vim="nvim"
 alias vi="nvim"
 alias cat="bat"
+
+function mkvenv() {
+	python3 -m venv venv
+	echo "source venv/bin/activate\nunset PS1" > .envrc
+	direnv allow
+}
+
+export DEFAULT_USER=schen
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
